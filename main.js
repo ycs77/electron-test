@@ -7,8 +7,13 @@ function createWindow() {
     height: 600,
     webPreferences: {
       preload: join(__dirname, 'preload.js'),
+      devTools: !app.isPackaged,
     },
   })
+
+  if (app.isPackaged) {
+    win.removeMenu()
+  }
 
   win.loadFile('index.html')
 }
